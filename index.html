@@ -3,70 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CINEMOD</title>
-    
+    <title>CINEMO — سینمو</title>
+    <meta name="description" content="حالت رو انتخاب کن، سینمو چند فیلم مناسب برات پیدا می‌کنه.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-    <header class="site-header">
+    <!-- ============ هدر ============ -->
+    <header class="site-header" id="siteHeader">
         <div class="container">
-            <a href="#" class="logo-link" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
-                <img src="https://uploadkon.ir/uploads/ab2a11_26Neon-Green-3D-سینمود-Logo.png" alt="لوگوی سینمو" class="logo-img">
-            </a>
+            <div class="header-inner">
+                <a href="#" class="logo-link" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+                    <img src="https://uploadkon.ir/uploads/098b28_26Neon-Green-3D-سینمود-Logo.png" alt="لوگوی سینمو" class="logo-img">
+                </a>
+
+                <nav class="main-nav" id="mainNav">
+                    <a href="#home" class="nav-link" onclick="scrollToSection('home'); return false;">خانه</a>
+                    <a href="#gallery" class="nav-link" onclick="scrollToSection('gallery'); return false;">گالری فیلم‌ها</a>
+                    <a href="#home" class="nav-link" onclick="scrollToSection('home'); return false;">درباره سینمو</a>
+                </nav>
+
+                <a href="#home" class="header-cta" onclick="scrollToSection('home'); return false;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    شروع
+                </a>
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="منو">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+            </div>
         </div>
     </header>
 
     <main>
+        <!-- ============ بخش Hero: انتخاب مود ============ -->
         <section id="home" class="hero-section">
             <div class="container">
-                <h1 class="hero-title">امروز چه فیلمی به حالت میاد؟</h1>
-                <p class="hero-subtitle">حالت رو انتخاب کن، سینمو چند فیلم مناسب برات پیدا می‌کنه.</p>
+                <div class="hero-eyebrow">
+                    <span class="dot"></span>
+                    <span>پیشنهاد فیلم بر اساس حال و هوای تو</span>
+                </div>
+                <h1 class="hero-title">امروز چه فیلمی <span class="accent-word">به حالت</span> میاد؟</h1>
+                <p class="hero-subtitle">حالت رو انتخاب کن، سینمو چند فیلم مناسب برات پیدا می‌کنه. تجربه‌ای ساده، شخصی‌سازی‌شده و بدون دردسر.</p>
+
                 <div class="mood-prompt">
                     <h2>الان چه حسی داری؟</h2>
                     <div class="mood-selector" id="moodSelector"></div>
                 </div>
+
                 <button class="cta-btn" id="findMovieBtn" disabled>فیلم مناسبم رو پیدا کن</button>
             </div>
         </section>
 
+        <!-- ============ بخش پیشنهاد فیلم ============ -->
         <section id="recommendation" class="recommendation-section hidden">
             <div class="container">
                 <div class="rec-header">
+                    <div class="rec-eyebrow">
+                        <span class="dot"></span>
+                        <span>پیشنهاد ویژه برای تو</span>
+                    </div>
                     <h2>حال الان: <span id="selectedMoodText"></span></h2>
                     <p>این سه فیلم می‌تونن انتخاب خوبی برای حالت باشن.</p>
                 </div>
                 <div class="movie-grid" id="recommendationList"></div>
                 <div class="rec-feedback">
                     <button id="changeMoodBtn" class="secondary-btn">
-                        <span>↻</span><span>یه حال دیگه</span>
+                        <span class="arrow-icon">↻</span>
+                        <span>یه حال دیگه</span>
                     </button>
                 </div>
             </div>
         </section>
 
-        <section id="gallery" class="gallery-section">
+        <!-- ============ بخش گالری فیلم‌ها ============ -->
+        <section id="gallery" class="gallery-section reveal">
             <div class="container">
-                <h2 class="section-title">گالری فیلم‌ها</h2>
-                <div class="gallery-filters" id="galleryFilters">
-                    <select class="filter-select" aria-label="فیلتر ژانر">
-                        <option value="all">همه ژانرها</option>
-                        <option value="کمدی">کمدی</option>
-                        <option value="درام">درام</option>
-                        <option value="اکشن">اکشن</option>
-                    </select>
+                <div class="section-header">
+                    <div class="section-eyebrow">
+                        <span class="dot"></span>
+                        <span>مرور همه فیلم‌ها</span>
+                    </div>
+                    <h2 class="section-title">گالری فیلم‌ها</h2>
+                    <p class="section-subtitle">همه فیلم‌های سینمو رو اینجا ببین. می‌تونی بر اساس ژانر فیلتر کنی.</p>
                 </div>
+
+                <!-- کشوی فیلتر ژانر -->
+                <div class="gallery-filter-dropdown" id="galleryFilterDropdown">
+                    <button class="filter-trigger" id="filterTrigger" aria-haspopup="listbox" aria-expanded="false">
+                        <span class="filter-trigger-label">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                            <span id="filterTriggerText">همه ژانرها</span>
+                        </span>
+                        <svg class="filter-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <ul class="filter-menu" id="filterMenu" role="listbox"></ul>
+                </div>
+
                 <div class="movie-grid" id="galleryList"></div>
             </div>
         </section>
     </main>
-    <script src="js/script.js"></script>
 
+    <!-- ============ فوتر ============ -->
     <footer class="site-footer">
-        <div class="container"><p>&copy; 2026 CINEMO. تمامی حقوق محفوظ است.</p></div>
+        <div class="container">
+            <img src="https://uploadkon.ir/uploads/ab2a11_26Neon-Green-3D-سینمود-Logo.png" alt="سینمو" class="footer-logo">
+            <p class="footer-text">&copy; 2026 <span>CINEMO</span>. تمامی حقوق محفوظ است.</p>
+        </div>
     </footer>
+
+    <!-- ============ دکمه بازگشت به بالا ============ -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="بازگشت به بالا" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        ↑
+    </button>
 </body>
+<script src="js/script.js"></script>
 </html>
